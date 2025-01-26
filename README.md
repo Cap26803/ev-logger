@@ -1,70 +1,163 @@
-# Getting Started with Create React App
+# EV Logger
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**EV Logger** is a web-based application designed to help users log and analyze their electric vehicle (EV) rides. It provides insights into energy consumption, cost estimation, and real-time analytics to enhance EV usage efficiency.
+
+---
+
+## Features
+
+- **EV Registration**: Add details of your electric vehicle.
+- **Log Rides**: Record date, distance, energy consumed, and cost for every ride.
+- **Cost Estimation**: Automatically calculate the energy consumed and cost range based on distance.
+- **Analytics Dashboard**: Visualize and analyze ride data for insights.
+- **Responsive Design**: Seamless user experience across devices.
+
+---
+
+## Tech Stack
+
+### Frontend
+- React.js (v19.0.0)
+- Tailwind CSS
+
+### Backend
+- Firebase Firestore (for data storage)
+
+### Additional Tools
+- `gh-pages` for deployment
+
+---
+
+## Setup Instructions
+
+### Prerequisites
+1. Node.js and npm installed.
+2. Firebase project set up (with Firestore).
+
+### Steps
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/Cap26803/ev-logger.git
+   cd ev-logger
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Configure Firebase**:
+   - Go to `src/firebase.js`.
+   - Add your Firebase project credentials:
+     ```javascript
+     import { initializeApp } from "firebase/app";
+     import { getFirestore } from "firebase/firestore";
+
+     const firebaseConfig = {
+         apiKey: "YOUR_API_KEY",
+         authDomain: "YOUR_AUTH_DOMAIN",
+         projectId: "YOUR_PROJECT_ID",
+         storageBucket: "YOUR_STORAGE_BUCKET",
+         messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+         appId: "YOUR_APP_ID"
+     };
+
+     const app = initializeApp(firebaseConfig);
+     export const db = getFirestore(app);
+     ```
+
+4. **Run the App Locally**:
+   ```bash
+   npm start
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+5. **Deploy to GitHub Pages**:
+   ```bash
+   npm run deploy
+   ```
+
+---
+
+## Deployment
+
+The app is deployed using GitHub Pages. Visit the live app at:
+[https://Cap26803.github.io/ev-logger](https://Cap26803.github.io/ev-logger)
+
+### Deploying Updates
+1. Make changes to the app.
+2. Build and deploy:
+   ```bash
+   npm run deploy
+   ```
+
+---
+
+## Project Structure
+
+```
+EV Logger
+├── public
+│   └── index.html         # Main HTML file
+├── src
+│   ├── components         # React components
+│   │   ├── DataAnalytics.js
+│   │   ├── EVRegistration.js
+│   │   ├── EVSelection.js
+│   │   ├── LogForm.js
+│   │   ├── Login.js
+│   │   └── Register.js
+│   ├── styles             # CSS files
+│   │   ├── styles.css
+│   │   └── LogForm.css
+│   ├── firebase.js        # Firebase configuration
+│   └── App.js             # Main React component
+├── package.json           # npm configuration
+└── README.md              # Project documentation
+```
+
+---
 
 ## Available Scripts
 
-In the project directory, you can run:
-
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### `npm run build`
+Builds the app for production to the `build` folder.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `npm run deploy`
+Deploys the app to GitHub Pages.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Acknowledgments
 
-### `npm run eject`
+- [React](https://reactjs.org/)
+- [Firebase](https://firebase.google.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [gh-pages](https://github.com/tschaub/gh-pages)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## License
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Contributions are welcome! Please fork this repository and submit a pull request for any changes or enhancements.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+For queries, please reach out to:
+[Cap26803](https://github.com/Cap26803)
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Happy Logging! 🚗⚡**

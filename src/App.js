@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, HashRouter as Router, Routes } from 'react-router-dom'; // Use HashRouter
 import DataAnalytics from './components/DataAnalytics';
 import EVRegistration from './components/EVRegistration';
 import EVSelection from './components/EVSelection';
@@ -20,9 +20,8 @@ function App() {
         {/* Updated LogForm route */}
         <Route path="/log-form/:selectedEV" element={<LogForm />} /> {/* Pass selected EV via URL */}
 
-        {/* Data Analytics Route (optional, if needed separately) */}
+        {/* Data Analytics Route */}
         <Route path="/data-analytics" element={<DataAnalytics />} /> {/* Separate route for data analytics */}
-
       </Routes>
     </Router>
   );
