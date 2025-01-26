@@ -1,4 +1,4 @@
-import { addDoc, collection } from "firebase/firestore"; // Firestore methods
+import { addDoc, collection, getDocs, limit, orderBy, query } from "firebase/firestore"; // Firestore methods
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"; // Import useNavigate for navigation and useParams for route params
 import { db } from "../firebase"; // Import Firestore from firebase.js
@@ -15,6 +15,7 @@ function LogForm() {
     });
     const [isSuccess, setIsSuccess] = useState(false);
     const [showAnalytics, setShowAnalytics] = useState(false); // State to toggle between form and analytics
+    const [lastDistance, setLastDistance] = useState(null); // State to store the last logged distance
 
     const { selectedEV } = useParams(); // Get selected EV from URL params
     const navigate = useNavigate(); // Use navigate hook
@@ -31,9 +32,12 @@ function LogForm() {
     };
 
     const calculateEnergyAndCost = (distance) => {
-        if (!distance) return;
+        if (!distance || !lastDistance) return;
 
-        const energyConsumed = (distance / vehicleRange) * batteryCapacity;
+        // Calculate the difference between the current and last distance
+        const distanceDifference = distance - lastDistance;
+        
+        const energyConsumed = (distanceDifference / vehicleRange) * batteryCapacity;
         const costMin = energyConsumed * electricityCostMin;
         const costMax = energyConsumed * electricityCostMax;
 
@@ -45,10 +49,35 @@ function LogForm() {
     };
 
     useEffect(() => {
+        // Fetch the last log for the selected EV
+        const fetchLastLog = async () => {
+            try {
+                const logsRef = collection(db, "logs");
+                const q = query(
+                    logsRef,
+                    orderBy("date", "desc"),
+                    limit(1) // Get the latest log
+                );
+                const querySnapshot = await getDocs(q);
+
+                if (!querySnapshot.empty) {
+                    const latestLog = querySnapshot.docs[0].data();
+                    setLastDistance(latestLog.distance); // Store the last logged distance
+                    console.log("Last Distance:", latestLog.distance); // Log for debugging
+                }
+            } catch (error) {
+                console.error("Error fetching last log:", error);
+            }
+        };
+
+        fetchLastLog(); // Call the function to fetch the last log when component loads
+    }, [selectedEV]); // Re-fetch when the selected EV changes
+
+    useEffect(() => {
         if (formData.distance) {
             calculateEnergyAndCost(formData.distance);
         }
-    }, [formData.distance]);
+    }, [formData.distance, lastDistance]); // Recalculate whenever distance or lastDistance changes
 
     const handleSubmit = async (e) => {
         e.preventDefault();

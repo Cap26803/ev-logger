@@ -65,7 +65,7 @@ const EVSelection = () => {
                     {evList.length === 0 ? (
                         <div>
                             <p>No EVs available. Please add an EV.</p>
-                            <button onClick={handleAddEV}>Add EV</button>
+                            <button onClick={handleAddEV}>Register New EV</button> {/* Updated button text */}
                         </div>
                     ) : (
                         <>
@@ -78,6 +78,9 @@ const EVSelection = () => {
                                 ))}
                             </select>
                             <button onClick={handleSelectEV}>Proceed to Log</button>
+                            <p>
+                                <button onClick={handleAddEV}>Register New EV</button> {/* Added Register New EV link */}
+                            </p>
                         </>
                     )}
                 </div>
