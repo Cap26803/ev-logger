@@ -1,21 +1,29 @@
-import React from "react";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Home from "./pages/Home";
+import React from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import DataAnalytics from './components/DataAnalytics';
+import EVRegistration from './components/EVRegistration';
+import EVSelection from './components/EVSelection';
+import LogForm from './components/LogForm';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   return (
     <Router>
-      <div className="app-container">
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <Routes>
+        <Route path="/" element={<Login />} /> {/* Set Login page as the initial page */}
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/ev-registration" element={<EVRegistration />} />
+        <Route path="/ev-selection" element={<EVSelection />} />
+        
+        {/* Updated LogForm route */}
+        <Route path="/log-form/:selectedEV" element={<LogForm />} /> {/* Pass selected EV via URL */}
+
+        {/* Data Analytics Route (optional, if needed separately) */}
+        <Route path="/data-analytics" element={<DataAnalytics />} /> {/* Separate route for data analytics */}
+
+      </Routes>
     </Router>
   );
 }
