@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ev-logger/static/css/main.ce6ceded.css",
+    "main.js": "/ev-logger/static/js/main.985c7d13.js",
+    "static/js/488.bb7a6b96.chunk.js": "/ev-logger/static/js/488.bb7a6b96.chunk.js",
+    "index.html": "/ev-logger/index.html",
+    "main.ce6ceded.css.map": "/ev-logger/static/css/main.ce6ceded.css.map",
+    "main.985c7d13.js.map": "/ev-logger/static/js/main.985c7d13.js.map",
+    "488.bb7a6b96.chunk.js.map": "/ev-logger/static/js/488.bb7a6b96.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ce6ceded.css",
+    "static/js/main.985c7d13.js"
+  ]
+}
